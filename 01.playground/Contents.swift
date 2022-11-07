@@ -108,48 +108,92 @@
 // ***** day05 ***** 옵셔널
 // *****************
 
-// 옵셔널이란?
-// 값이 있는지 없는지 모른다.
-// 값이 없다는 것을 nil이라고 함
-var someVariable: Int? = nil
+//// 옵셔널이란?
+//// 값이 있는지 없는지 모른다.
+//// 값이 없다는 것을 nil이라고 함
+//var someVariable: Int? = nil
+//
+//if someVariable == nil {
+//    someVariable = 90
+//}
+//
+//// 업랩핑이란? 랩 즉 감싸져있는 것을 벗기는 것 (optional로 감싸져 있음)
+//
+//// someVariable에 값이 있다면 otherVariable에 넣어서 쓰겠습니다.
+//if let otherVariable = someVariable {
+//    // 이렇게 하면 otherVariable은 옵셔널이 아니게 됨(언랩핑됨)
+//    print("언랩핑 되었다. 즉 값이 있다. otherVariable: \(otherVariable)")
+//} else {
+//    // 값이 없을때는 여기로 옴
+//    print("값이 없다.")
+//}
+//
+//someVariable = nil
+//
+//// someVarialbe에 값이 없다면 기본값으로 요놈을 넣겠다.
+//let myValue = someVariable ?? 10
+//print("myValue \(myValue)")
+//
+//var firstValue: Int? = 30
+//var secondValue: Int? = 50
+//print("firstValue \(firstValue)")
+//print("secondValue \(secondValue)")
+//
+//unwrap(firstValue)
+//unwrap(secondValue)
+//unwrap(nil)
+//
+//// parameter: 이런식으로 넣는게 싫으면 언더바를 추가
+//func unwrap(_ parameter: Int?){
+//    print("upwrap() called")
+//    // 값이 없으면 리턴 해버린다. if let이랑 거의 똑같음
+//    guard let unWrappedParam = parameter else {
+//        return
+//    }
+//    print("unWrappedParam: \(unWrappedParam)")
+//}
 
-if someVariable == nil {
-    someVariable = 90
+// *****************
+// ***** day06 ***** 클래스 vs 스트럭트
+// *****************
+
+// 유튜버 (데이터) 모델 - struct / 구조체
+print("========= struct ========")
+struct YoutuberStruct {
+    var name: String
+    var subscribersCount: Int
 }
 
-// 업랩핑이란? 랩 즉 감싸져있는 것을 벗기는 것 (optional로 감싸져 있음)
+var devJang = YoutuberStruct(name: "장영남", subscribersCount: 99999)
 
-// someVariable에 값이 있다면 otherVariable에 넣어서 쓰겠습니다.
-if let otherVariable = someVariable {
-    // 이렇게 하면 otherVariable은 옵셔널이 아니게 됨(언랩핑됨)
-    print("언랩핑 되었다. 즉 값이 있다. otherVariable: \(otherVariable)")
-} else {
-    // 값이 없을때는 여기로 옴
-    print("값이 없다.")
-}
+var devJangClone = devJang
 
-someVariable = nil
+// 복사를 하기 때문에 값을 변경, 훼손해도 다른 것에 영향을 주지 않는것을 알 수 있음 (다른 메모리 공간을 사용)
+print("devJangClone.name : \(devJangClone.name)")
+devJangClone.name = "홀롤로"
+print("값 넣은 후 devJangClone.name : \(devJangClone.name)")
+print("값 넣은 후 devJang.name : \(devJang.name)")
 
-// someVarialbe에 값이 없다면 기본값으로 요놈을 넣겠다.
-let myValue = someVariable ?? 10
-print("myValue \(myValue)")
 
-var firstValue: Int? = 30
-var secondValue: Int? = 50
-print("firstValue \(firstValue)")
-print("secondValue \(secondValue)")
-
-unwrap(firstValue)
-unwrap(secondValue)
-unwrap(nil)
-
-// parameter: 이런식으로 넣는게 싫으면 언더바를 추가
-func unwrap(_ parameter: Int?){
-    print("upwrap() called")
-    // 값이 없으면 리턴 해버린다. if let이랑 거의 똑같음
-    guard let unWrappedParam = parameter else {
-        return
+// 클래스
+print("========= class ========")
+class YoutuberClass {
+    var name: String
+    var subscribersCount: Int
+    
+    // 이니셜라이저(생성자), 시작한다 즉 메모리에 올린다
+    // init으로 매개변수를 가진 생성자 메소드를 만들어야 매개변수를 넣어서 그값을 가진 객체(오브젝트)를 만들 수 있다.
+    init(name: String, subscribersCount: Int) {
+        // 내가 가지고 있는 name을 외부에서 가져온 name(init의 파라미터)으로 하겠다
+        self.name = name
+        self.subscribersCount = subscribersCount
     }
-    print("unWrappedParam: \(unWrappedParam)")
 }
 
+var devNam = YoutuberClass(name: "장영남", subscribersCount: 99999)
+var devNamClone = devNam
+// 클래스는 서로 연결되어 있음 (같은 메모리 공간을 바라보고 있음)
+print("devNamClone.name : \(devNamClone.name)")
+devNamClone.name = "홀롤로"
+print("값 넣은 후 devNamClone.name : \(devNamClone.name)")
+print("값 넣은 후 devNam.name : \(devNam.name)")
