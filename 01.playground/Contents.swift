@@ -219,22 +219,52 @@
 // ***** day08 ***** 함수 매개변수 이름
 // *****************
 
-// 함수, 메소드 정의
-func myFunction(name: String) -> String{
-    return "안녕하세요 \(name)"
+//// 함수, 메소드 정의
+//func myFunction(name: String) -> String{
+//    return "안녕하세요 \(name)"
+//}
+//
+//// 함수, 메소드를 호출한다. call
+//myFunction(name: "영남")
+//
+//// 함수 내의 로직처리는 name으로 하지만 호출할때만 with으로 바꿈
+//func myFunctionSecond(with name: String) -> String{
+//    return "안녕하세요 \(name)"
+//}
+//
+//myFunctionSecond(with: "영남이")
+//
+//// 호출할때 파라미터 이름 쓰기 싫으면 _앞에 쓰기
+//func myFunctionThird(_ name: String) -> String{
+//    return "안녕하세요 \(name)"
+//}
+
+// *****************
+// ***** day09 ***** 제네릭
+// *****************
+
+// 어떤것이든 넣을 수 있다는 뜻, 보통 SomeElement말고 T라고 하는데 가독성을 위해서
+struct MyArray<SomeElement> {
+    var elements: [SomeElement] = [SomeElement]()
+    
+    init(_ elements: [SomeElement]) {
+        self.elements = elements
+    }
+}
+    
+struct Friend {
+    var name: String
 }
 
-// 함수, 메소드를 호출한다. call
-myFunction(name: "영남")
+var mySomeArray = MyArray([1, 2, 3])
+print("mySomeArray: \(mySomeArray)")
 
-// 함수 내의 로직처리는 name으로 하지만 호출할때만 with으로 바꿈
-func myFunctionSecond(with name: String) -> String{
-    return "안녕하세요 \(name)"
-}
+var myStirngArray = MyArray(["가", "나", "다"])
+print("myStirngArray: \(myStirngArray)")
 
-myFunctionSecond(with: "영남이")
+let friend_01 = Friend(name: "철수")
+let friend_02 = Friend(name: "영희")
+let friend_03 = Friend(name: "수잔")
 
-// 호출할때 파라미터 이름 쓰기 싫으면 _앞에 쓰기
-func myFunctionThird(_ name: String) -> String{
-    return "안녕하세요 \(name)"
-}
+var myFriendsArray = MyArray([friend_01, friend_02, friend_03, 2])
+print("myFriendsArray: \(myFriendsArray )")
