@@ -202,15 +202,39 @@
 // ***** day07 ***** 프로퍼티 옵저버
 // *****************
 
-// 라이프 사이클 훅의 마운트되는 단계와 비슷
-var myAge = 0 {
-    willSet {
-        print("값이 설정될 예정이다. myAge: \(myAge)")
-    }
-    didSet {
-        print("값이 설정되었다. myAge: \(myAge)")
-    }
+//// 라이프 사이클 훅의 마운트되는 단계와 비슷
+//var myAge = 0 {
+//    willSet {
+//        print("값이 설정될 예정이다. myAge: \(myAge)")
+//    }
+//    didSet {
+//        print("값이 설정되었다. myAge: \(myAge)")
+//    }
+//}
+//
+//myAge = 10
+//myAge = 20
+
+// *****************
+// ***** day08 ***** 함수 매개변수 이름
+// *****************
+
+// 함수, 메소드 정의
+func myFunction(name: String) -> String{
+    return "안녕하세요 \(name)"
 }
 
-myAge = 10
-myAge = 20
+// 함수, 메소드를 호출한다. call
+myFunction(name: "영남")
+
+// 함수 내의 로직처리는 name으로 하지만 호출할때만 with으로 바꿈
+func myFunctionSecond(with name: String) -> String{
+    return "안녕하세요 \(name)"
+}
+
+myFunctionSecond(with: "영남이")
+
+// 호출할때 파라미터 이름 쓰기 싫으면 _앞에 쓰기
+func myFunctionThird(_ name: String) -> String{
+    return "안녕하세요 \(name)"
+}
