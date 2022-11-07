@@ -243,28 +243,54 @@
 // ***** day09 ***** 제네릭
 // *****************
 
-// 어떤것이든 넣을 수 있다는 뜻, 보통 SomeElement말고 T라고 하는데 가독성을 위해서
-struct MyArray<SomeElement> {
-    var elements: [SomeElement] = [SomeElement]()
-    
-    init(_ elements: [SomeElement]) {
-        self.elements = elements
-    }
+//// 어떤것이든 넣을 수 있다는 뜻, 보통 SomeElement말고 T라고 하는데 가독성을 위해서
+//struct MyArray<SomeElement> {
+//    var elements: [SomeElement] = [SomeElement]()
+//
+//    init(_ elements: [SomeElement]) {
+//        self.elements = elements
+//    }
+//}
+//
+//struct Friend {
+//    var name: String
+//}
+//
+//var mySomeArray = MyArray([1, 2, 3])
+//print("mySomeArray: \(mySomeArray)")
+//
+//var myStirngArray = MyArray(["가", "나", "다"])
+//print("myStirngArray: \(myStirngArray)")
+//
+//let friend_01 = Friend(name: "철수")
+//let friend_02 = Friend(name: "영희")
+//let friend_03 = Friend(name: "수잔")
+//
+//var myFriendsArray = MyArray([friend_01, friend_02, friend_03, 2])
+//print("myFriendsArray: \(myFriendsArray )")
+
+// *****************
+// ***** day10 ***** 클로저
+// *****************
+
+//String을 반환하는 클로저
+let myName: String = {
+   // myName으로 들어간다
+    return "영남"
+}()
+
+print(myName)
+
+// 클로저 정의, string 매개변수를 받아서 string을 내놓는.
+let myRealName : (String) -> String = { (name: String) -> String in
+    return "개발하는 \(name)"
 }
-    
-struct Friend {
-    var name: String
+
+myRealName("영남이")
+
+// string을 받아서 내뱉는게 없는
+let myRealNameLogic : (String) -> Void = { (name: String) in
+    print("개발하는 \(name)")
 }
 
-var mySomeArray = MyArray([1, 2, 3])
-print("mySomeArray: \(mySomeArray)")
-
-var myStirngArray = MyArray(["가", "나", "다"])
-print("myStirngArray: \(myStirngArray)")
-
-let friend_01 = Friend(name: "철수")
-let friend_02 = Friend(name: "영희")
-let friend_03 = Friend(name: "수잔")
-
-var myFriendsArray = MyArray([friend_01, friend_02, friend_03, 2])
-print("myFriendsArray: \(myFriendsArray )")
+myRealNameLogic("영남쓰")
