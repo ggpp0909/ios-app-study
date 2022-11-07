@@ -157,43 +157,60 @@
 // ***** day06 ***** 클래스 vs 스트럭트
 // *****************
 
-// 유튜버 (데이터) 모델 - struct / 구조체
-print("========= struct ========")
-struct YoutuberStruct {
-    var name: String
-    var subscribersCount: Int
-}
+//// 유튜버 (데이터) 모델 - struct / 구조체
+//print("========= struct ========")
+//struct YoutuberStruct {
+//    var name: String
+//    var subscribersCount: Int
+//}
+//
+//var devJang = YoutuberStruct(name: "장영남", subscribersCount: 99999)
+//
+//var devJangClone = devJang
+//
+//// 복사를 하기 때문에 값을 변경, 훼손해도 다른 것에 영향을 주지 않는것을 알 수 있음 (다른 메모리 공간을 사용)
+//print("devJangClone.name : \(devJangClone.name)")
+//devJangClone.name = "홀롤로"
+//print("값 넣은 후 devJangClone.name : \(devJangClone.name)")
+//print("값 넣은 후 devJang.name : \(devJang.name)")
+//
+//
+//// 클래스
+//print("========= class ========")
+//class YoutuberClass {
+//    var name: String
+//    var subscribersCount: Int
+//
+//    // 이니셜라이저(생성자), 시작한다 즉 메모리에 올린다
+//    // init으로 매개변수를 가진 생성자 메소드를 만들어야 매개변수를 넣어서 그값을 가진 객체(오브젝트)를 만들 수 있다.
+//    init(name: String, subscribersCount: Int) {
+//        // 내가 가지고 있는 name을 외부에서 가져온 name(init의 파라미터)으로 하겠다
+//        self.name = name
+//        self.subscribersCount = subscribersCount
+//    }
+//}
+//
+//var devNam = YoutuberClass(name: "장영남", subscribersCount: 99999)
+//var devNamClone = devNam
+//// 클래스는 서로 연결되어 있음 (같은 메모리 공간을 바라보고 있음)
+//print("devNamClone.name : \(devNamClone.name)")
+//devNamClone.name = "홀롤로"
+//print("값 넣은 후 devNamClone.name : \(devNamClone.name)")
+//print("값 넣은 후 devNam.name : \(devNam.name)")
 
-var devJang = YoutuberStruct(name: "장영남", subscribersCount: 99999)
+// *****************
+// ***** day07 ***** 프로퍼티 옵저버
+// *****************
 
-var devJangClone = devJang
-
-// 복사를 하기 때문에 값을 변경, 훼손해도 다른 것에 영향을 주지 않는것을 알 수 있음 (다른 메모리 공간을 사용)
-print("devJangClone.name : \(devJangClone.name)")
-devJangClone.name = "홀롤로"
-print("값 넣은 후 devJangClone.name : \(devJangClone.name)")
-print("값 넣은 후 devJang.name : \(devJang.name)")
-
-
-// 클래스
-print("========= class ========")
-class YoutuberClass {
-    var name: String
-    var subscribersCount: Int
-    
-    // 이니셜라이저(생성자), 시작한다 즉 메모리에 올린다
-    // init으로 매개변수를 가진 생성자 메소드를 만들어야 매개변수를 넣어서 그값을 가진 객체(오브젝트)를 만들 수 있다.
-    init(name: String, subscribersCount: Int) {
-        // 내가 가지고 있는 name을 외부에서 가져온 name(init의 파라미터)으로 하겠다
-        self.name = name
-        self.subscribersCount = subscribersCount
+// 라이프 사이클 훅의 마운트되는 단계와 비슷
+var myAge = 0 {
+    willSet {
+        print("값이 설정될 예정이다. myAge: \(myAge)")
+    }
+    didSet {
+        print("값이 설정되었다. myAge: \(myAge)")
     }
 }
 
-var devNam = YoutuberClass(name: "장영남", subscribersCount: 99999)
-var devNamClone = devNam
-// 클래스는 서로 연결되어 있음 (같은 메모리 공간을 바라보고 있음)
-print("devNamClone.name : \(devNamClone.name)")
-devNamClone.name = "홀롤로"
-print("값 넣은 후 devNamClone.name : \(devNamClone.name)")
-print("값 넣은 후 devNam.name : \(devNam.name)")
+myAge = 10
+myAge = 20
