@@ -39,38 +39,66 @@
 // *****************
 
 // 학교 - 초, 중, 고
-enum School {
-    case elemetary, middle, high
+//enum School {
+//    case elemetary, middle, high
+//}
+//
+//let yourSchool = School.high
+//print("yourSchool \(yourSchool)")
+//
+//enum Grade: Int {
+//    case first = 1
+//    case second = 2 // 케이스에 값 할당 가능
+//}
+//
+//let yourGrade = Grade.second.rawValue // rawValue로 케이스에 할당된 값 꺼내올 수 있음
+//print("yourGrade : \(yourGrade)")
+//
+//enum SchollDetail {
+//    case elmentary(name: String)
+//    case middle(name: String)
+//    case high(name: String)
+//
+//    func getName() -> String {
+//        switch self {
+//        case .elmentary(let name):
+//            return name
+//        case let .middle(name):
+//            return name
+//        case .high(let name):
+//            return name
+//        }
+//    }
+//}
+//
+//let yourMiddleSchoolName = SchollDetail.middle(name: "지도중학교")
+//print("yourMiddleSchoolName: \(yourMiddleSchoolName)")
+//print("yourMiddleSchoolName: \(yourMiddleSchoolName.getName())")
+ 
+// *****************
+// ***** day04 ***** 반복문
+// *****************
+
+// range
+// 0...5
+// 0, 1, 2, 3, 4, 5
+
+// 0..<5
+// 0, 1, 2, 3, 4
+for i in 0...5 {
+    print("i: \(i)")
 }
 
-let yourSchool = School.high
-print("yourSchool \(yourSchool)")
-
-enum Grade: Int {
-    case first = 1
-    case second = 2 // 케이스에 값 할당 가능
+for i in 0..<5 where i % 2 == 0{
+    print("i: \(i)")
 }
 
-let yourGrade = Grade.second.rawValue // rawValue로 케이스에 할당된 값 꺼내올 수 있음
-print("yourGrade : \(yourGrade)")
+//var randomInts: [Int] = []
+var randomInts: [Int] = [Int]()
 
-enum SchollDetail {
-    case elmentary(name: String)
-    case middle(name: String)
-    case high(name: String)
-    
-    func getName() -> String {
-        switch self {
-        case .elmentary(let name):
-            return name
-        case let .middle(name):
-            return name
-        case .high(let name):
-            return name
-        }
-    }
+for _ in 0..<25 {
+    let randomNumber = Int.random(in: 0...100)
+    randomInts.append(randomNumber)
 }
 
-let yourMiddleSchoolName = SchollDetail.middle(name: "지도중학교")
-print("yourMiddleSchoolName: \(yourMiddleSchoolName)")
-print("yourMiddleSchoolName: \(yourMiddleSchoolName.getName())")
+print("randomInts: \(randomInts)")
