@@ -273,24 +273,115 @@
 // ***** day10 ***** 클로저
 // *****************
 
-//String을 반환하는 클로저
-let myName: String = {
-   // myName으로 들어간다
-    return "영남"
-}()
+////String을 반환하는 클로저
+//let myName: String = {
+//   // myName으로 들어간다
+//    return "영남"
+//}()
+//
+//print(myName)
+//
+//// 클로저 정의, string 매개변수를 받아서 string을 내놓는.
+//let myRealName : (String) -> String = { (name: String) -> String in
+//    return "개발하는 \(name)"
+//}
+//
+//myRealName("영남이")
+//
+//// string을 받아서 내뱉는게 없는
+//let myRealNameLogic : (String) -> Void = { (name: String) in
+//    print("개발하는 \(name)")
+//}
+//
+//myRealNameLogic("영남쓰")
 
-print(myName)
+// *****************
+// ***** day11 ***** 매개변수로써 클로저
+// *****************
 
-// 클로저 정의, string 매개변수를 받아서 string을 내놓는.
-let myRealName : (String) -> String = { (name: String) -> String in
-    return "개발하는 \(name)"
+// completion 이라는 클로저를 매개변수로 가지는 메소드 정의
+func sayHi (completion: () -> Void) {
+    print("sayHi() called")
+    
+    // completion 클로저 실행
+    completion()
 }
 
-myRealName("영남이")
+//메소드 호출부에서 이벤트 종료를 알 수 있다.
+sayHi(completion: {
+    print("까꿍 1")
+})
 
-// string을 받아서 내뱉는게 없는
-let myRealNameLogic : (String) -> Void = { (name: String) in
-    print("개발하는 \(name)")
+sayHi() {
+    print("까꿍 2")
 }
 
-myRealNameLogic("영남쓰")
+// 맨 마지막 매개변수가 클로저라면 생략 가능
+sayHi {
+    print("까꿍 3")
+}
+
+// 매개변수로서 데이터를 반환하는 클로저
+func sayHiWithName(completion: (String) -> Void) {
+    print("sayHiWithName() called")
+    // 클로저를 실행과 동시에 데이터를 반환
+    completion("오늘도 빡코딩 하자")
+}
+
+sayHiWithName(completion: { (comment: String) in
+    print("까꿍", comment)
+})
+
+// 자료형을 아니 줄일 수 있음
+sayHiWithName(completion: {comment in
+    print("까꿍", comment)
+})
+
+// 더 줄이기 가능
+sayHiWithName{ comment in
+    print("까꿍", comment)
+}
+
+// 더 줄이기 가능
+sayHiWithName{
+    print("까꿍", $0) // 첫번째 들어온 애부터 $0 $1 $2 ...
+}
+
+// 매개변수로서 데이터를 여러개 반환하는 클로저
+func sayHiWithFullName(completion: (String, String) -> Void) {
+    print("sayHiWithFullName() called")
+    // 클로저를 실행과 동시에 데이터를 반환
+    completion("오늘도 빡코딩 하자", "화이팅!")
+}
+
+sayHiWithFullName {first, second in
+    print("첫뻔째 \(first), 두번째: \(second)")
+}
+
+sayHiWithFullName{
+    print("첫번째: \($0), 두번째:\($1)")
+}
+
+// completion을 받기 싫을때도 있잖아 그럴땐
+func sayHiOptional (completion: (() -> Void)? = nil)  {
+    print("sayHiOptional() called")
+    
+    // completion 클로저 실행
+    completion?()
+}
+
+sayHiOptional()
+sayHiOptional {
+    print("까꿍")
+}
+
+// (Int) -> String
+func transform(number: Int) -> String {
+    return "숫자 :\(number)"
+}
+
+var myNumbers : [Int] = [0, 1, 2, 3, 4, 5]
+
+var transformedNumbers = myNumbers.map { aNumber in
+    return "숫자: \(aNumber)"
+}
