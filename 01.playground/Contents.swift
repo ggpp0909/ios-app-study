@@ -390,22 +390,58 @@
 // ***** day12 ***** 객체 생성자, 해체자
 // *****************
 
-class MyFriend {
-    
+//class MyFriend {
+//
+//    var name : String
+//
+//    // 생성자, 메모리에 올림
+//    init(_ name: String = "이름없음") {
+//        self.name = name
+//        print("MyFriend가 메모리에 올라갔다")
+//    }
+//
+//    // 해체자, 메모리에서 사라질때는 deinit이 실행됨
+//    deinit{
+//        print("메모리에서 사라짐")
+//    }
+//}
+//
+//let myFriend = MyFriend("영남") // 이 행동 자체가 메모리에 올라가게 됨 (init 실행됨)
+//let aFriend = MyFriend()
+//
+
+// *****************
+// ***** day13 ***** 상속
+// *****************
+
+class Friend {
+
     var name : String
-    
-    // 생성자, 메모리에 올림
-    init(_ name: String = "이름없음") {
+
+    init(_ name: String) {
         self.name = name
-        print("MyFriend가 메모리에 올라갔다")
     }
-    
-    // 해체자, 메모리에서 사라질때는 deinit이 실행됨
-    deinit{
-        print("메모리에서 사라짐")
+
+    func sayHi() {
+        print("안녕?! 난 \(self.name) 라고 해")
     }
 }
 
-let myFriend = MyFriend("영남") // 이 행동 자체가 메모리에 올라가게 됨 (init 실행됨)
-let aFriend = MyFriend()
 
+class BestFriend : Friend {
+    // override를 통해 부모의 메서드를 가져온다
+    override init(_ name:String) {
+        
+        // super키워드로 부모의 메서드를 사용
+        super.init("베프 " + name)
+    }
+    
+    override func sayHi() {
+        super.sayHi()
+    }
+}
+
+let myFriend = Friend("영남")
+let myBestFriend = BestFriend("장영남")
+myFriend.sayHi()
+myBestFriend.sayHi()
