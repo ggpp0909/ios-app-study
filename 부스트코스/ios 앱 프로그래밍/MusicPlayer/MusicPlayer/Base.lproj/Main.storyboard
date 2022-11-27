@@ -40,6 +40,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="playPauseButton" destination="ZsQ-hz-8gW" id="x50-QA-0Uc"/>
+                        <outlet property="progressSlider" destination="166-Zv-jXh" id="9LW-Dh-VNk"/>
+                        <outlet property="timeLabel" destination="yz7-CZ-6Aw" id="0AW-rQ-j9T"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
